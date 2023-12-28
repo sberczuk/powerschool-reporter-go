@@ -19,3 +19,6 @@
 
 # Go workspace file
 go.work
+
+# Data files (to avoid accidentally sharing personal data when developing)
+data/
