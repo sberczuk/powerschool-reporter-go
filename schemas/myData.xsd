@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.sifinfo.org/infrastructure/2.x" xmlns:ns2="http://stumo.transcriptcenter.com" xmlns:i="http://www.sifinfo.org/infrastructure/2.x">
+    <xs:import namespace="http://stumo.transcriptcenter.com" schemaLocation="../data/ns2.xsd"/>
+    <xs:element name="StudentRecordExchangeData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:StudentDemographicRecord"/>
+                <xs:element ref="i:StudentAcademicRecord"/>
+                <xs:element ref="i:StudentRecordPackage"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StudentDemographicRecord">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:ReportingDate"/>
+                <xs:element ref="i:StudentPersonalData"/>
+                <xs:element ref="i:SIF_ExtendedElements"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StudentPersonalData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:LocalId"/>
+                <xs:element ref="i:StateProvinceId"/>
+                <xs:element ref="i:OtherIdList"/>
+                <xs:element ref="i:Name"/>
+                <xs:element ref="i:DemographicsData"/>
+                <xs:element ref="i:AddressList"/>
+                <xs:element ref="i:PhoneNumberList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherIdList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:OtherId"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherId">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="Type" use="required" type="xs:integer"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DemographicsData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:RaceList"/>
+                <xs:element ref="i:Gender"/>
+                <xs:element ref="i:BirthDate"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="RaceList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Race"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Race" type="i:Code"/>
+    <xs:element name="Gender" type="xs:NCName"/>
+    <xs:element name="BirthDate" type="xs:NMTOKEN"/>
+    <xs:element name="StudentAcademicRecord">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:ReportingDate"/>
+                <xs:element ref="i:StudentSchoolEnrollmentData"/>
+                <xs:element ref="i:CourseHistory"/>
+                <xs:element ref="i:AcademicPerformanceSummary"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StudentSchoolEnrollmentData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:GradeLevel"/>
+                <xs:element ref="i:SchoolAttended"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GradeLevel">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="i:Code">
+                    <xs:sequence>
+                        <xs:element ref="i:OtherCodeList"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SchoolAttended">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:LEAInfoData"/>
+                <xs:element ref="i:SchoolInfoData"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LEAInfoData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:StateProvinceId"/>
+                <xs:element ref="i:LEAName"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LEAName" type="xs:string"/>
+    <xs:element name="SchoolInfoData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:LocalId"/>
+                <xs:element ref="i:StateProvinceId"/>
+                <xs:element ref="i:SchoolName"/>
+                <xs:element ref="i:SchoolContactList"/>
+                <xs:element ref="i:AddressList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SchoolName" type="xs:string"/>
+    <xs:element name="SchoolContactList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:SchoolContact"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SchoolContact">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:ContactInfo"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ContactInfo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Name"/>
+                <xs:element ref="i:PositionTitle"/>
+                <xs:element ref="i:PhoneNumberList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PositionTitle" type="xs:string"/>
+    <xs:element name="CourseHistory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="i:Term"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Term">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:TermInfoData"/>
+                <xs:element ref="i:Courses"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="TermInfoData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:SchoolYear"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SchoolYear" type="xs:integer"/>
+    <xs:element name="Courses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="i:Course"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Course">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:SchoolCourseInfoData"/>
+                <xs:element ref="i:MarkingPeriods"/>
+                <xs:element ref="i:SIF_ExtendedElements"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SchoolCourseInfoData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:CourseCode"/>
+                <xs:element ref="i:CourseTitle"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CourseCode" type="xs:string"/>
+    <xs:element name="CourseTitle" type="xs:string"/>
+    <xs:element name="MarkingPeriods">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:MarkingPeriod"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MarkingPeriod">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:GradeLevelWhenTaken"/>
+                <xs:element ref="i:MarkData"/>
+                <xs:element ref="i:CourseCreditsAttempted"/>
+                <xs:element ref="i:CourseCreditsEarned"/>
+                <xs:element ref="i:DaysAbsent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GradeLevelWhenTaken">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="i:Code">
+                    <xs:sequence>
+                        <xs:element ref="i:OtherCodeList"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MarkData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Percentage"/>
+                <xs:element ref="i:Letter"/>
+                <xs:element ref="i:Narrative"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Percentage" type="xs:integer"/>
+    <xs:element name="Letter" type="xs:string"/>
+    <xs:element name="Narrative" type="xs:string"/>
+    <xs:element name="CourseCreditsAttempted" type="xs:decimal"/>
+    <xs:element name="CourseCreditsEarned" type="xs:decimal"/>
+    <xs:element name="DaysAbsent" type="xs:integer"/>
+    <xs:element name="AcademicPerformanceSummary">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:GraduationDate"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GraduationDate" type="xs:integer"/>
+    <xs:element name="StudentRecordPackage">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:BinaryData"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BinaryData">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:base64Binary">
+                    <xs:attribute name="Description" use="required" type="xs:NCName"/>
+                    <xs:attribute name="MIMEType" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ReportingDate" type="xs:NMTOKEN"/>
+    <xs:element name="LocalId" type="xs:integer"/>
+    <xs:element name="StateProvinceId" type="xs:NMTOKEN"/>
+    <xs:element name="Name">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:LastName"/>
+                <xs:element ref="i:FirstName"/>
+                <xs:element minOccurs="0" ref="i:MiddleName"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="MiddleName" type="xs:NCName"/>
+    <xs:complexType name="Code">
+        <xs:sequence>
+            <xs:element ref="i:Code"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Code" type="xs:string"/>
+    <xs:element name="AddressList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="i:Address"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Address">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Street"/>
+                <xs:element ref="i:City"/>
+                <xs:element ref="i:StateProvince"/>
+                <xs:element ref="i:PostalCode"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Street">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Line1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Line1" type="xs:string"/>
+    <xs:element name="City" type="xs:NCName"/>
+    <xs:element name="StateProvince" type="xs:NCName"/>
+    <xs:element name="PostalCode" type="xs:integer"/>
+    <xs:element name="PhoneNumberList" type="i:PhoneNumber"/>
+    <xs:element name="SIF_ExtendedElements">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="i:SIF_ExtendedElement"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SIF_ExtendedElement">
+        <xs:complexType mixed="true">
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element ref="ns2:PSCustomFields"/>
+                <xs:element ref="ns2:StudentDemographicRecordExtensions"/>
+            </xs:choice>
+            <xs:attribute name="Name" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Email">
+        <xs:complexType mixed="true">
+            <xs:attribute name="Type" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherCodeList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:OtherCode"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OtherCode">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:integer">
+                    <xs:attribute name="Codeset" use="required" type="xs:NCName"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="LastName" type="xs:NCName"/>
+    <xs:element name="FirstName" type="xs:NCName"/>
+    <xs:complexType name="PhoneNumber">
+        <xs:sequence>
+            <xs:element ref="i:PhoneNumber"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="PhoneNumber">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Number"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Number" type="xs:NMTOKEN"/>
+</xs:schema>
