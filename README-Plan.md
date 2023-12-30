@@ -7,4 +7,5 @@ Things to do
 
 Chores
 
-- Figure out how to generate sample data from an XSD
+- Figure out how to generate sample data. 
+  - Consider writing helpers to populate the elements
