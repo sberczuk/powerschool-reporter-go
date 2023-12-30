@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://stumo.transcriptcenter.com" xmlns:ns2="http://stumo.transcriptcenter.com" xmlns:i="http://www.sifinfo.org/infrastructure/2.x">
+    <xs:import namespace="http://www.sifinfo.org/infrastructure/2.x" schemaLocation="myData.xsd"/>
+    <xs:element name="PSCustomFields">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:CustomFieldList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CustomFieldList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="ns2:CustomField"/>
+            </xs:sequence>
+            <xs:attribute name="entity" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CustomField">
+        <xs:complexType>
+            <xs:attribute name="Name" use="required"/>
+            <xs:attribute name="Value"/>
+            <xs:attribute name="isCanonical" use="required" type="xs:NCName"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="StudentDemographicRecordExtensions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:ExcludeFromRanking"/>
+                <xs:element ref="ns2:FeeExemptionStatus"/>
+                <xs:element ref="ns2:Ethnicity"/>
+                <xs:element ref="ns2:StudentContacts"/>
+                <xs:element ref="ns2:Languages"/>
+                <xs:element ref="ns2:EmergencyContacts"/>
+                <xs:element ref="ns2:Health"/>
+                <xs:element ref="ns2:HispanicLatino"/>
+                <xs:element ref="ns2:RaceDecline"/>
+                <xs:element ref="ns2:EmailList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ExcludeFromRanking" type="xs:NCName"/>
+    <xs:element name="FeeExemptionStatus" type="xs:integer"/>
+    <xs:element name="Ethnicity" type="xs:integer"/>
+    <xs:element name="StudentContacts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="ns2:PS_StudentContactType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Languages">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="EmergencyContacts">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="ns2:PS_StudentContactType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Health">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:Doctor"/>
+                <xs:element ref="ns2:Dentist"/>
+                <xs:element ref="ns2:Allergies"/>
+                <xs:element ref="ns2:MedicalAlert"/>
+                <xs:element ref="ns2:Certifications"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Doctor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:Fullname"/>
+                <xs:element ref="ns2:Phone"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Dentist">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:Fullname"/>
+                <xs:element ref="ns2:Phone"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Allergies" type="xs:NCName"/>
+    <xs:element name="MedicalAlert">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:Message"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Message" type="xs:string"/>
+    <xs:element name="Certifications">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:CertificationType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CertificationType">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="HispanicLatino" type="xs:NCName"/>
+    <xs:element name="RaceDecline" type="xs:NCName"/>
+    <xs:element name="EmailList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="i:Email"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PS_StudentContactType">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:Name"/>
+                <xs:element minOccurs="0" ref="ns2:ContactFlags"/>
+                <xs:element minOccurs="0" ref="ns2:PhoneNumberList"/>
+                <xs:element minOccurs="0" ref="ns2:Relationship"/>
+                <xs:element minOccurs="0" ref="ns2:Employer"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Name">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="i:LastName"/>
+                <xs:element minOccurs="0" ref="i:FirstName"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ContactFlags">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="ns2:ParentLegalGuardian"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ParentLegalGuardian" type="xs:NCName"/>
+    <xs:element name="PhoneNumberList" type="i:PhoneNumber"/>
+    <xs:element name="Relationship" type="i:Code"/>
+    <xs:element name="Employer" type="xs:string"/>
+    <xs:element name="Fullname" type="xs:string"/>
+    <xs:element name="Phone">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" ref="i:Number"/>
+            </xs:sequence>
+            <xs:attribute name="Type" use="required" type="xs:integer"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
