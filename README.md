@@ -6,4 +6,9 @@ This is a successor to [powerschool-reporter](https://github.com/sberczuk/powers
 
 # Notes
 
-Data types were generated with [go-xmlstruct](https://github.com/twpayne/go-xmlstruct)
+Data types were generated with [go-xmlstruct](https://github.com/twpayne/go-xmlstruct) using
+this command:
+
+```shell
+cat myData.xml| go  run github.com/twpayne/go-xmlstruct/cmd/goxmlstruct@latest >types.go
+```
